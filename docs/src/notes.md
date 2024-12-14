@@ -27,11 +27,11 @@ This will take:
 
 Here are some examples:
 
-```julia
+``` @example
 using MusicalPlaying
 play_wav_direct("A")
 play_wav_direct(chord(["C", "E", "G"]))
-play_wav_direct(["C", "E", "G"])
+play_wav_direct(note.(["C", "E", "G"]))
 play_wav_direct([chord(["C", "E", "G"]), chord(["F","A","C"]), chord(["G", "B", "D"]), chord(["C", "E", "G"])])
 ```
 

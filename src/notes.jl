@@ -44,7 +44,7 @@ function sample_wav_direct(n::Note; bpm=60, samplerate = 44100)
     y
 end
 
-function sample_wav_direct(nc::Chord; bpm=60, samplerate = 44100, file=tempname())
+function sample_wav_direct(c::Chord; bpm=60, samplerate = 44100, file=tempname())
     ns = map(x -> note(x[1], l = x[2], d = c.duration), zip(c.pitch, c.loudness))
     ys = sample_wav_direct.(ns; bpm, samplerate)
     y = sum(ys)
