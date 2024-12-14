@@ -20,6 +20,8 @@ I plan to cover:
 - [ ] Possibly generate traditional Piano-roll plots
 - [ ] Define basit types to represent note, tone, sound
 - [ ] Explore sound synthesis
+- [ ] Act as a very simple MIDI player
+- [ ] Parse (simple) Lilypond syntax
 
 On the synthesis side, I want to keep working on functions as long as possible, and only sample just before rendering to WAV.
 
