@@ -12,7 +12,7 @@ In time, this may be resolved, but for now, I focus on writing the package, as I
 
 I plan to cover:
 
-- [X] Playing simple notes, chords and melodies
+- [X] Playing simple notes, chords and melodies.
 - [ ] Explore different Tuning Systems, in particular Just Intonation
 - [ ] Represent Scores of several voices
 - [ ] Use DataFrames to view Scores as in a Tracker

@@ -34,3 +34,4 @@ The `play_wav_direct` methods work by writeing and reading a WAV-file.
 We (will also) have `play_portaudio` methods that use `PortAudio.jl` and `SampleSignals.jl` to play a stream. 
 This is more efficient for long pieces.
 But the `play_wav_diret` is simple and very robust for studiyng short phrases.
+
