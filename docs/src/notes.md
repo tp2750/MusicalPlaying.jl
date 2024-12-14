@@ -1,3 +1,7 @@
+```@meta
+CurrentModule = MusicalPlaying
+```
+
 # Notes
 A `Note` is a type meant to encode the abstract note:
 
@@ -23,7 +27,8 @@ This will take:
 
 Here are some examples:
 
-``` @example
+```julia
+using MusicalPlaying
 play_wav_direct("A")
 play_wav_direct(chord(["C", "E", "G"]))
 play_wav_direct(["C", "E", "G"])
