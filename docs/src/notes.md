@@ -27,7 +27,7 @@ This will take:
 
 Here are some examples:
 
-``` @example
+``` 
 using MusicalPlaying
 play_wav_direct("A")
 play_wav_direct(chord(["C", "E", "G"]))
