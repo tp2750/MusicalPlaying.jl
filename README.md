@@ -6,8 +6,8 @@
 
 MusicalPlaying.jl is a package for playing (with) music.
 
-It grew out of [TuningSystems.jl]() ([presented on JuliaCon2024]()) to have a more complete and better structured package.
-It does have some overlap with `MusicTheory.jl` and `MIDI.jl` from [JuliaMusic]. 
+It grew out of [TuningSystems.jl](https://github.com/tp2750/TuningSystems.jl) [presented](https://youtu.be/6Te9rThZaa4?list=PLP8iPy9hna6R5gUZLbSZCZTGJ0uncLBfi&t=11909) on [JuliaCon2024](https://pretalx.com/juliacon2024/speaker/UPFEMA/) to have a more complete and better structured package. 
+It has some overlap with [MusicTheory.jl](https://github.com/JuliaMusic/MusicTheory.jl) and [MIDI.jl](https://github.com/JuliaMusic/MIDI.jl) from [JuliaMusic](https://github.com/JuliaMusic). 
 In time, this may be resolved, but for now, I focus on writing the package, as I find most logical.
 
 I plan to cover:
@@ -18,10 +18,9 @@ I plan to cover:
 - [ ] Use DataFrames to view Scores as in a Tracker
 - [ ] Plot notes, chords and scores in an "isometric" form more natural that the classical scores
 - [ ] Possibly generate traditional Piano-roll plots
-- [ ] Define basit types to represent note, tone, sound
+- [ ] Define basic types to represent note, tone, sound
 - [ ] Explore sound synthesis
 - [ ] Act as a very simple MIDI player
 - [ ] Parse (simple) Lilypond syntax
 
 On the synthesis side, I want to keep working on functions as long as possible, and only sample just before rendering to WAV.
-
