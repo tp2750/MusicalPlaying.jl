@@ -37,6 +37,11 @@ end
 
 chord(ns::Vector{String}; l = 1, d = 1) = chord(note.(ns; l, d))
 
+struct Melody{T <: AbstractNote}
+   notes::Vector{T}
+end
+
+
 function sample_wav_direct(n::Note; bpm=60, samplerate = 44100)
     freq = MIDI.pitch_to_hz(n.pitch)
     x = 0:1/samplerate:prevfloat(n.duration*60/bpm)
@@ -71,3 +76,9 @@ function play_wav_direct(n; bpm=60, samplerate = 44100, file=tempname())
     WAV.wavplay(file)
 end
 
+function save_wav_direct(m::Melody; bpm=60, samplerate = 44100, file=tempname())
+    save_wav_direct(m.notes; bpm, samplerate, file)
+end
+function sample_wav_direct(m::Melody; bpm=60, samplerate = 44100)
+    sample_wav_direct.(m.notes; bpm, samplerate)
+end
