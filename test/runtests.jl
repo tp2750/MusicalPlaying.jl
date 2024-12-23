@@ -11,5 +11,10 @@ using Test
             [0.0, -0.007169081692236633, -0.014337794919535263, -0.02150577123578199]
         ]
     end
-
+    @testset "tunings.jl" begin
+        @test isapprox(tet12.tuning(69), 440)
+        @test isapprox(just_intonation.tuning(69), 436.0426088343311)
+        @test tet12.names(69) == "A"
+        @test just_intonation.names(69) == "5//3"
+    end
 end
