@@ -17,4 +17,7 @@ using Test
         @test tet12.names(69) == "A"
         @test just_intonation.names(69) == "5//3"
     end
+    @testset "tones.jl" begin
+        @test tone(note("A")).frequency == 440.0f0
+    end
 end
