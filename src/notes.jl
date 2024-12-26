@@ -35,7 +35,7 @@ function chord(ns::Vector{Note})
           )
 end
 
-chord(ns::Vector{String}; l = 1, d = 1) = chord(note.(ns; l, d))
+chord(ns::Vector{String}; l = 1/length(ns), d = 1) = chord(note.(ns; l, d))
 
 struct Melody{T <: AbstractNote}
    notes::Vector{T}

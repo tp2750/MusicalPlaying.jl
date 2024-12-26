@@ -21,3 +21,7 @@ using Test
         @test tone(note("A")).frequency == [440.0f0]
     end
 end
+
+## s2 = sound(Melody([note("C"), chord(["G", "B", "D"]), note("C")]), sine)
+## s1 = sound(tone(note("C"), tuning = just_intonation), sine)
+## play_wav(s2)
