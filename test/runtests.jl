@@ -18,6 +18,6 @@ using Test
         @test just_intonation.names(69) == "5//3"
     end
     @testset "tones.jl" begin
-        @test tone(note("A")).frequency == 440.0f0
+        @test tone(note("A")).frequency == [440.0f0]
     end
 end

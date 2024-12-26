@@ -40,7 +40,8 @@ chord(ns::Vector{String}; l = 1, d = 1) = chord(note.(ns; l, d))
 struct Melody{T <: AbstractNote}
    notes::Vector{T}
 end
-
+import Base.length
+length(m::Melody) = length(m.notes)
 
 function sample_wav_direct(n::Note; bpm=60, samplerate = 44100)
     freq = MIDI.pitch_to_hz(n.pitch)

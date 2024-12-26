@@ -11,4 +11,11 @@ export tet12, equal_tempered, just_intonation
 
 include("tones.jl")
 export tone
+
+include("instruments.jl")
+export sine
+
+include("sounds.jl")
+export sound, play_wav
+
 end
