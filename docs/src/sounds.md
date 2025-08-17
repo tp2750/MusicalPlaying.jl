@@ -196,6 +196,11 @@ The transition is at index 1000.
 
 ## Square ocillator
 
+We use the `ar_generator`[@REF] function to generate a square instrument function:
+
+`square1_ar = Instrument(ar_generator(square1, attack = 0.005, release = 0.005)) `
+
+
 ``` julia
 using MusicalPlaying
 c1 = chord(["C", "E", "G"])
@@ -212,6 +217,11 @@ plot(MusicalPlaying.sample(s5)[range], label = "square1_ar")
 
 
 ## Saw ocillator
+
+We use the `ar_generator`[@REF] function to generate a square instrument function:
+
+`saw1_ar = Instrument(ar_generator(saw1, attack = 0.005, release = 0.005)) `
+
 
 ``` julia
 using MusicalPlaying

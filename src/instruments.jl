@@ -24,7 +24,6 @@ function find_end(f, t_2)
     first(zeros[ grads .>=0 ])
 end
 
-
 function _sine(t::Tone, bpm = 60, t_start = 0)
     oscillator = (x -> sin(2pi * x)) # 1-peroidinc function
     freq = t.frequency
@@ -38,7 +37,9 @@ function _sine(t::Tone, bpm = 60, t_start = 0)
     Sound(func, [t], t_start, t_end)
 end
 
-
+"""
+   sine is an instrument with a sine wave extended to always end at 0 value (no discontinuities)
+"""
 sine = Instrument(_sine)
 
 
@@ -53,6 +54,7 @@ function ramp_down(t, t0 = 0., t1 = 1.)
     return(1 - ((t-t0) / (t1-t0)))
 end
 
+## We keep this one for refence. It is the same as sine1_ar generated below
 function _sine_ar(t::Tone, bpm = 60, t_start = 0; attack = 0.005, release = 0.005)
     ## sine function with 100ms attach and 100ms release
     oscillator = (x -> sin(2pi * x)) # 1-peroidinc function
@@ -69,7 +71,12 @@ end
 
 sine_ar = Instrument(_sine_ar)
 
-# Attack-Release generator
+"""
+   ar_generator
+   Attack-Release generator: takes a 1-periodic function being zero in 0 and in 1 and applying an attack, release envelope.
+   Simplified version of ADSR with D=0 and S=1.
+   Resurns an instrument funciton, ie a function takin Tone, tempo (bpm) and start time, and return a Sound struct playing the tone in that tempo starting at the start time.
+"""
 function ar_generator(oscillator::Function; attack = 0.005, release = 0.005)
     ## o is the 1-periodic generator function
     function(t::Tone, bpm = 60, t_start = 0; attack = attack, release = release)
@@ -98,7 +105,7 @@ function square1(t)
 #    s >= 1 && return 0
 end
 
-square1_ar = Instrument(ar_generator(square1, attack = 0.005, release = 0.005)) ## same as sine_ar!
+square1_ar = Instrument(ar_generator(square1, attack = 0.005, release = 0.005)) 
 
 # saw wave
 function _saw1(t)
@@ -110,5 +117,5 @@ end
 
 saw1(t) = 2*_saw1(t+0.25)-1
 
-saw1_ar = Instrument(ar_generator(saw1, attack = 0.005, release = 0.005)) ## same as sine_ar!
+saw1_ar = Instrument(ar_generator(saw1, attack = 0.005, release = 0.005))
 
