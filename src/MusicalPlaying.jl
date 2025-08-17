@@ -13,7 +13,7 @@ include("tones.jl")
 export tone
 
 include("instruments.jl")
-export sine
+export sine, sine_ar
 
 include("sounds.jl")
 export sound, play_wav

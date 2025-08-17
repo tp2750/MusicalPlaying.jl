@@ -14,10 +14,7 @@ We can get a sound, from a note through this path:
 
 So the Note encodes the abstract musical information about pich, duration and loudness.
 The Tuning turns this into frequency.
-The instrument describes how to actually render the tone: it is 
-* a periodic function (tone generator)
-* an envelope
-* effects to apply before enforcing the envelope
+The instrument describes how to actually render the tone: it is a function takin a tone (including duration), tempo (bpm) and a starting time, and returns a function that can be sampled over the time interval
 
 The simples instrument is just a sine function, but with an envelope extending the playing to it reaches 0.
 
@@ -143,4 +140,57 @@ plot(p1, p2, link=:both, layout=(2,1), label = ["sine" "sin"])
 ```
 
 ![Comparing Chords](img/chord2.png)
+
+# Using an envelope
+
+The function `_sin_ar` is a generator function that can generate sine functions with attack and release envelope.
+Using just 5 ms attack and release is enough
+
+``` julia
+using MusicalPlaying
+sinear = MusicalPlaying.Instrument(((t,b,s) -> MusicalPlaying._sine_ar(t,b,s, attack=0.005, release = 0.005)))
+c1 = chord(["C", "E", "G"])
+c2 = chord(["F", "A", "C"])
+c3 = chord(["G", "B", "D"])
+m3 = Melody([c1, c2, c3, c1])
+s3 = sound(m3, sinear)
+play_wav(s3)
+```
+
+This give a nice smooth transition, but also makes the notes fall a little bit (50 ms) behind.
+
+The 50 ms is 44100*0.005 = 220 samples, so let's look at the first 3000 samples:
+
+``` julia
+julia> plot(MusicalPlaying.sample(s3)[1:1000], label = "sin_ar")
+```
+
+![Start of sound](img/sin_ar1.png)
+
+We can also look at the change of chords:
+
+``` julia
+range = (-1000:1000) .+ 44100
+plot(MusicalPlaying.sample(s3)[range], label = "sin_ar")
+```
+
+We export that with the name `sine_ar`.
+
+``` julia
+using MusicalPlaying
+c1 = chord(["C", "E", "G"])
+c2 = chord(["F", "A", "C"])
+c3 = chord(["G", "B", "D"])
+m3 = Melody([c1, c2, c3, c1])
+s4 = sound(m3, sine_ar)
+play_wav(s4)
+range = (-1000:1000) .+ 44100
+plot(MusicalPlaying.sample(s4)[range], label = "sin_ar")
+```
+
+The transition is at index 1000.
+
+![Chord transition](img/sin_ar2.png)
+
+# Other oscillators
 
