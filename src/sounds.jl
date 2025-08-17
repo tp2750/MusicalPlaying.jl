@@ -29,7 +29,7 @@ function sound_func(t::Tone, i::Instrument; bpm = 60, t_start = 0)
     l = length(freq)
     seconds = t.note.duration * 60/bpm
     @assert length(loud) == l
-    f1(t) = mean([loud[n] * i.synth(freq[n]*(t - t_start)) for n=1:l])
+    f1(t) = sum([loud[n] * i.synth(freq[n]*(t - t_start)) for n=1:l])
     t_end = find_end(f1, t_start + seconds)
     func(t) = f1(t) * step_up(t, t_start) * step_down(t, t_end)
     (func, t_end)
