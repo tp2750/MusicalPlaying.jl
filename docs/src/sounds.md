@@ -194,3 +194,39 @@ The transition is at index 1000.
 
 # Other oscillators
 
+## Square ocillator
+
+``` julia
+using MusicalPlaying
+c1 = chord(["C", "E", "G"])
+c2 = chord(["F", "A", "C"])
+c3 = chord(["G", "B", "D"])
+m3 = Melody([c1, c2, c3, c1])
+s5 = sound(m3, MusicalPlaying.square1_ar)
+play_wav(s5)
+range = (-1000:1000) .+ 44100
+plot(MusicalPlaying.sample(s5)[range], label = "square1_ar")
+```
+
+![Square chord](img/square1.png)
+
+
+## Saw ocillator
+
+``` julia
+using MusicalPlaying
+c1 = chord(["C", "E", "G"])
+c2 = chord(["F", "A", "C"])
+c3 = chord(["G", "B", "D"])
+m3 = Melody([c1, c2, c3, c1])
+s6 = sound(m3, MusicalPlaying.saw1_ar)
+play_wav(s6)
+range = (-1000:1000) .+ 44100
+plot(MusicalPlaying.sample(s6)[range], label = "saw1_ar")
+```
+
+![Saw chord](img/saw1.png)
+
+## The oscillators
+
+![The oscillators](img/oscillators.png)
