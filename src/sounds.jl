@@ -37,7 +37,7 @@ end
 
 function sound(t::Tone, i::Instrument; bpm = 60, t_start = 0)
     (f,t_end) = sound_func(t,i;bpm, t_start)
-    Sound(t, [t], t_end)
+    Sound(f, [t], t_end)
 end
 
 function sound(m::Melody, i::Instrument; bpm=60, tuning=tet12)
@@ -56,7 +56,7 @@ function sound(m::Melody, i::Instrument; bpm=60, tuning=tet12)
 end
 
 function sample(s::Sound; samplerate = 44100)
-    x = 0:1/samplerate:prevfloat(s.duration)
+    x = 0:1/samplerate:prevfloat(s.seconds)
     y = s.func.(x)
     y
 end
