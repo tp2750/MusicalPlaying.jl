@@ -6,19 +6,27 @@ version = "1.0.0-DEV"
 [deps]
 ForwardDiff = "f6369f11-7733-5829-9624-2563aa707210"
 MIDI = "f57c4921-e30c-5f49-b073-3f2f2ada663e"
-Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 Roots = "f2b01f46-fcfa-551c-844a-d8ac1e96c665"
 StatsBase = "2913bbd2-ae8a-5f71-8c99-4fb6c76f3a91"
 WAV = "8149f6b0-98f6-5db9-b78f-408fbbb8ef88"
 
+[weakdeps]
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+
+[extensions]
+# name of extension to the left
+# extension dependencies required to load the extension to the right
+# use a list for multiple extension dependencies
+PlotsExt = "Plots"
+
 [compat]
-ForwardDiff = "0.10.38"
-MIDI = "2.7.0"
-Plots = "1.40.9"
-Roots = "2.2.2"
-StatsBase = "0.34.4"
-WAV = "1.2.0"
-julia = "1.10"
+ForwardDiff = ">= 0.10.38"
+MIDI = ">= 2.7.0"
+Plots = ">= 1.40.9"
+Roots = ">= 2.2.2"
+StatsBase = ">= 0.34.4"
+WAV = ">= 1.2.0"
+julia = ">= 1.10"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
