@@ -41,10 +41,10 @@ a `Chord` is a sequence (Vector) of `Note`s with the same `duration` (but possib
 ## AbstractNote
 [`Note`](@ref) and [`Chord`](@ref) are the instances of `AbstractNote`.
 
-## Melody (TODO)
+## Melody
 A `Melody` is a sequence (Vector) of `Note`s and `Chords` that are played in succession.
 
-## Tone (TODO)
+## Tone
 The tone combines a `Note` or `Chrod` with a `Tuning` to assign frequency to the pitch.
 This was the objective of [TuningSystems.jl](https://github.com/tp2750/TuningSystems.jl).
 
@@ -52,8 +52,9 @@ The slots of `Tone` are
 
 * frequency: The frequency in Hz.
 * note: remember the AbstractNote this comes from
-* tuning: rember the Tuning used
+* tuning: remember the Tuning used
 
-
+## Sound
+A sound is a function that can be sampled.
 
 

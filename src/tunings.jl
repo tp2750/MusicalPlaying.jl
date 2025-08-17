@@ -20,7 +20,7 @@ It also includes `names` of each scaling.
 In case of the 12 tone equal temperement, it could be the names of the notes: C, C#, D, D#, E, ..., B.
 It also includes a name of the tuning (used for plotting etc).
 
-Preferably use the constructor function [`tuning`](@ref ) to construct it.
+Preferably use the constructor function [`tuning_system`](@ref ) to construct it.
 """
 struct TuningSystem{T}
     steps::Int
@@ -48,23 +48,6 @@ tuning_system(v::Vector{T}, n::String, s::Vector{String}) where T <: Number = Tu
 tuning_system(v::Vector{T}, n::String) where T <: Number = TuningSystem(length(v), v, n, string.(v))
 tuning_system(v::Vector{T}) where T <: Number = TuningSystem(length(v), v, :tuning, string.(v))
 
-"""
-    equal_tempered(n)
-
-Constructs an equal tempered tuning of length `n`.
-
-If the length `n` is 12, the names of the scalings are set to the standard names of the notes: "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B".
-
-The `scalings` of and equal tempered scale of length `n` divides the octave evenly on a log scale.
-This means the ratio between successive scalings are `2^(1/n)`.
-
-So the vector of scalings is:
-
-``` julia
-    scalings = [(2^(1/n))^x for x in 0:(n-1)]
-```
-
-"""
 function _equal_tempered(n) ## n TET n Tone Equal Temperement. n EDO Even Divisions of Octave
     scalings = [(2^(1/n))^x for x in 0:(n-1)]
     if n == 12
@@ -109,6 +92,23 @@ function mk_tuning(tuning::TuningSystem; root_pitch = 60, root_frequency = 261.6
 end
 
 
+"""
+    equal_tempered(n)
+
+Constructs an equal tempered tuning of length `n`.
+
+If the length `n` is 12, the names of the scalings are set to the standard names of the notes: "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B".
+
+The `scalings` of and equal tempered scale of length `n` divides the octave evenly on a log scale.
+This means the ratio between successive scalings are `2^(1/n)`.
+
+So the vector of scalings is:
+
+``` julia
+    scalings = [(2^(1/n))^x for x in 0:(n-1)]
+```
+
+"""
 equal_tempered(n) = mk_tuning(_equal_tempered(n))
 tet12 = equal_tempered(12)
 just_intonation = mk_tuning(_just)
