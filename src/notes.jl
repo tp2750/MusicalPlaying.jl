@@ -37,7 +37,7 @@ end
 
 chord(ns::Vector{String}; l = 1, d = 1) = chord(note.(ns; l, d))
 
-struct Melody{T <: AbstractNote}
+struct Melody{T <: AbstractNote} ## Should perhaps be Voice https://www.sfcv.org/learn/glossary/voice
    notes::Vector{T}
 end
 import Base.length

@@ -43,6 +43,7 @@ a `Chord` is a sequence (Vector) of `Note`s with the same `duration` (but possib
 
 ## Melody
 A `Melody` is a sequence (Vector) of `Note`s and `Chords` that are played in succession.
+Alternative word: "Voice" ch https://www.sfcv.org/learn/glossary/voice
 
 ## Tone
 The tone combines a `Note` or `Chrod` with a `Tuning` to assign frequency to the pitch.
@@ -57,4 +58,17 @@ The slots of `Tone` are
 ## Sound
 A sound is a function that can be sampled.
 
+## Instruments
+
+An `AbstractInstrument` takes a frequency, duration and loudness and generates a `Sound`.
+
+Currently, we implement a `Synthesizer` that combines and oscillator and an envelope to make the Sound for the required duration.
+
+It would be great to implement som physically modelled instruments.
+
+# TODO
+
+## Effect
+
+Transforms a Sound to a new Sound (eg chorus or delay).
 
