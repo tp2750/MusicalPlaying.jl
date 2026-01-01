@@ -18,7 +18,7 @@ using MusicalPlaying
 using Plots
 using WAV
 
-harm(t; phi=0) = sin(t*2pi + phi)
+harm_osc(t; phi=0) = sin(t*2pi + phi)
 
 function tri(t, d=1; t1=.5)
     t = t/d
@@ -28,8 +28,8 @@ function tri(t, d=1; t1=.5)
     return (1/(1-t1)-t/(1-t1))
 end
 
-i2 = synthesizer(harm, tri)
-i3 = synthesizer(harm, tri; env_kw = (;t1=.25))
+i2 = synthesizer(harm_osc, tri_env)
+i3 = synthesizer(harm_osc, tri_env; env_kw = (;t1=.25))
 
 plot(
         plot(i3.oscillator(10), -1, 3, label="osc"),
@@ -51,10 +51,10 @@ using MusicalPlaying
 using Plots
 using WAV
 
-harm(t; phi=0) = sin(t*2pi + phi)
-i4 = synthesizer(harm, adsr)
-i5 = synthesizer(harm, adsr; env_kw = (;  A=.11, D=0.1, S=0.9, R=0.1))
-i6 = synthesizer(harm, adsr; env_kw = (;  A=.75, D=0.5, S=1.2, R=0.1))
+harm_osc(t; phi=0) = sin(t*2pi + phi)
+i4 = synthesizer(harm_osc, adsr_env)
+i5 = synthesizer(harm_osc, adsr_env; env_kw = (;  A=.5, D=.5, S=0.5, R=0.5))
+i6 = synthesizer(harm_osc, adsr_env; env_kw = (;  A=.5, D=2, S=.5, R=0.5))
 
 plot(
         plot(i4(100, 2, 1).fun, -1, 3, label = "sound 1"),
@@ -62,7 +62,7 @@ plot(
         plot(i6(100, 2, 1).fun, -1, 3, label = "sound 3"),
         layout = (3,1), 
 )
-
+play_wav(i4([400, 500, 600], 2, 1))
 ```
 
 ## Example using `Synthesizer`
@@ -102,3 +102,30 @@ plot(
 play_wav(i1(100,1,1))
 ```
 
+# Play a midi file
+
+Currently performance of playing a MIDI file is terrible!
+
+``` julia
+using MusicalPlaying
+using WAV
+import MIDI ## MIDI.Note conflicts with MusicalPlaying.Note
+
+i4 = synthesizer(harm_osc, adsr_env)
+m1 = MIDI.readMIDIFile("midi/praeludium_1.midi")
+# s1 = sound(m1, i4, just1);
+# play_wav(s1)
+
+mspt = MIDI.ms_per_tick(m1) # 384
+
+s3 = sound(m1.tracks[3], i4, just1, mspt; notes = 100) # first notes # 0.15 s per note
+play_wav(s3)
+
+## First section. Sample time 10s, playing time: 17s
+play_wav(
+    sound(m1.tracks[2], i4, just1, mspt; notes = 14) +
+    sound(m1.tracks[3], i4, just1, mspt; notes = 48) +
+    sound(m1.tracks[4], i4, just1, mspt; notes = 16) 
+)
+
+```

@@ -19,6 +19,9 @@ import WAV
 # export sound, play_wav
 
 include("synthesizers.jl")
-export Synthesizer, synthesizer, play_wav, melody, adsr# , sine, saw, square, adsr
-
+export Synthesizer, synthesizer, play_wav, melody # , sine, saw_osc, square_osc, adsr
+export harm_osc, tri_env, adsr_env
+export Tuning, tet12, just1
+export note
+export play_midi, sound
 end

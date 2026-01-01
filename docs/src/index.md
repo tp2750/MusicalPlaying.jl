@@ -33,7 +33,7 @@ The [`Note`](@ref) data type descries an abstract note, as we see in a score:
 
 * The "pictch": note height. An integer between 0 and 127 as the MIDI note. Not directly a frequency, we get that through the "TunigSystem".
 * The "loudness": relative volume. Not directly amplitude. That comes in a mastering step just before sampling. Defaults to 1. Perhaps "forte" is 2 and "piano" as 0.5.
-* The "duration": relative note length. 1 is a "beat", so a duration of 1 sounds for 1 sec if the tempo is 60 bpm. Typically, a auarter note has a dutration of 1, and a half note a duration of 2.
+* The "duration": relative note length. 1 is a "beat", so a duration of 1 sounds for 1 sec if the tempo is 60 bpm. Typically, a quarter note has a dutration of 1, and a half note a duration of 2.
 
 ## Chord
 a `Chord` is a sequence (Vector) of `Note`s with the same `duration` (but possibly different `loudness`) that are played together at the same time.
