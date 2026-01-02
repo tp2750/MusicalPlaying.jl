@@ -113,7 +113,7 @@ import MIDI ## MIDI.Note conflicts with MusicalPlaying.Note
 
 i4 = synthesizer(harm_osc, adsr_env)
 m1 = MIDI.readMIDIFile("midi/praeludium_1.midi")
-# s1 = sound(m1, i4, justC);
+# s1 = sound(m1, i4, justC); # 0.01 sec
 # play_wav(s1)
 
 mspt = MIDI.ms_per_tick(m1) # 384

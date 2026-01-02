@@ -39,8 +39,16 @@ I plan to cover:
   - [ ] AHR (attac, half-life, release)
   
 On the synthesis side, I want to keep working on functions as long as possible, and only sample just before rendering to WAV.
+
 Also, keep vectors of functions as long as possible before summing them up to the final function.
 This helps mixing, and mastering, making all notes of equal loudness sound the same and possibly splitting between left and right channel.
+
+Sampling takes some time, as we get a lot of functions to sum.
+But to "render" a part of a longer sound, we only need to sum the functions with support over that part (and perhaps some before if we have delay effects.
+This is also only possible if we keep the Sounds separae as long as possible.
+It also helps to keep the vector of sounds sorted by t_start.
+we may need an index of which Sounds influence a given time, but that is a later optimization.
+
 
 # Basic Data Types
 The basic data sctructures are similar, but different from both [MIDI.jl](https://github.com/JuliaMusic/MIDI.jl) and [MusicTheory.jl](https://github.com/JuliaMusic/MusicTheory.jl).
