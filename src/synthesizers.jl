@@ -363,7 +363,7 @@ function sound(m::MIDI.MIDIFile, instrument, tuning; notes = Inf) ## TODO: more 
     s = Sound{Float64}[]
     # Loop over tracks
     i = 1 ## TEMP
-    for t in m.tracks
+    for t in m.tracks # TODO: parallelize over tracks
         @show t
         push!(s, sound(t, instrument, tuning, mspt, notes = notes))
         # # Loop over notes
@@ -419,3 +419,9 @@ end
 # bpm = MIDI.bpm(m1) # MIDI.bpm is wrong for lilypond produced midi file. Consider using qpm in stead!
 # tpq = m1.tpq # ticks per quarter. Need to convert MIDI.Note to MusicalPlaying.Note
 # TODO: MIDI.jl reports qpm == 60 (correct), but bpm == 80 on praeludium_1.midi
+
+# Effects
+## Linear effects can be applied per Sound.
+## Non-linear effects are probably non-commutative.
+## Remember option to keep some "dry".
+

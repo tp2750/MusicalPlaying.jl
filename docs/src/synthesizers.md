@@ -118,7 +118,7 @@ m1 = MIDI.readMIDIFile("midi/praeludium_1.midi")
 
 mspt = MIDI.ms_per_tick(m1) # 384
 
-s3 = sound(m1.tracks[3], i4, just1, mspt; notes = 100) # first notes # 0.15 s per note
+s3 = sound(m1.tracks[3], i4, just1, mspt; notes = 100) # first notes # 0.15 s per note. O3: 23 sec compile for 34 sec play
 play_wav(s3)
 
 ## First section. Sample time 10s, playing time: 17s
@@ -129,3 +129,10 @@ play_wav(
 )
 
 ```
+
+It takes some time to compute the full sound: 9 sec for this 17 sec sound.
+TODO: parallelize over tracks and instruments to speed up rendering the full sound.
+
+TODO: 
+For playing, we can start playing before we have rendered everything.
+This should be doable using SampledSignals.jl

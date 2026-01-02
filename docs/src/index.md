@@ -13,17 +13,34 @@ In time, this may be resolved, but for now, I focus on writing the package, as I
 I plan to cover:
 
 - [X] Playing simple notes, chords and melodies.
-- [ ] Explore different Tuning Systems, in particular Just Intonation
+- [-] Explore different Tuning Systems, in particular Just Intonation
 - [ ] Represent Scores of several voices
 - [ ] Use DataFrames to view Scores as in a Tracker
 - [ ] Plot notes, chords and scores in an "isometric" form more natural that the classical scores
 - [ ] Possibly generate traditional Piano-roll plots
-- [ ] Define basic types to represent note, tone, sound
-- [ ] Explore sound synthesis
-- [ ] Act as a very simple MIDI player
+- [X] Define basic types to represent note, tone, sound
+- [-] Explore sound synthesis
+- [-] Act as a very simple MIDI player
 - [ ] Parse (simple) Lilypond syntax
-
+- [ ] Explore effects
+- [ ] Make "instrumens" by analyzing samples (guitar, piano, ...) and reproducng the main spectrum.
+- [ ] Effects
+  - [ ] Simulate Room
+  - [ ] simple repeat, chorus
+  - [ ] limiter, compressor
+  - [ ] Look at DSP litterature, Faust, C-sound, Supercollider etc
+- [ ] Oscillators
+  - [X] simple harmonic
+  - [ ] multiple harmonics
+  - [ ] saw
+  - [ ] square
+- [ ] Envelopes
+  - [X] ADSR
+  - [ ] AHR (attac, half-life, release)
+  
 On the synthesis side, I want to keep working on functions as long as possible, and only sample just before rendering to WAV.
+Also, keep vectors of functions as long as possible before summing them up to the final function.
+This helps mixing, and mastering, making all notes of equal loudness sound the same and possibly splitting between left and right channel.
 
 # Basic Data Types
 The basic data sctructures are similar, but different from both [MIDI.jl](https://github.com/JuliaMusic/MIDI.jl) and [MusicTheory.jl](https://github.com/JuliaMusic/MusicTheory.jl).
