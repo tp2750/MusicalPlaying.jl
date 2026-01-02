@@ -363,9 +363,10 @@ function sound(m::MIDI.MIDIFile, instrument, tuning; notes = Inf) ## TODO: more 
     s = Sound{Float64}[]
     # Loop over tracks
     i = 1 ## TEMP
-    for t in m.tracks # TODO: parallelize over tracks
+    for t in m.tracks # This is not what takes time, som no need to parallelize this.
         @show t
-        push!(s, sound(t, instrument, tuning, mspt, notes = notes))
+        length(MIDI.getnotes(t)) == 0 && continue
+            push!(s, sound(t, instrument, tuning, mspt, notes = notes))
         # # Loop over notes
         # for n in MIDI.getnotes(t)            
         #     # create Sound
